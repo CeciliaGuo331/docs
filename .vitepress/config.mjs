@@ -5,6 +5,7 @@ export default defineConfig({
   title: "sparkles",
   description: "record my life",
   base: '/docs/',
+  srcExclude: ['README.md', 'TODO.md'],
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     nav: [
