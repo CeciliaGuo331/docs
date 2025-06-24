@@ -3,8 +3,8 @@
 layout: home
 
 hero:
-  name: "Docs"
-  text: "aq's days & nights"
+  name: "aq's blog"
+  text: "record my life"
   tagline: My great project tagline
   actions:
     - theme: brand

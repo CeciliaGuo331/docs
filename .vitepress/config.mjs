@@ -2,8 +2,8 @@ import { defineConfig } from 'vitepress'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
-  title: "Docs",
-  description: "aq's days & nights",
+  title: "aq's blog",
+  description: "record my life",
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     nav: [
