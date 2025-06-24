@@ -8,8 +8,10 @@ export default defineConfig({
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     nav: [
-      { text: 'Contents', link: '/' },
       { text: 'Home', link: 'https://ceciliaguo331.github.io/', target: '_self' },
+      { text: 'Sparkles', link: '/' },
+      { text: 'Aboutme', link: 'https://ceciliaguo331.github.io/aboutme.html', target: '_self' },
+      { text: 'Friends', link: 'https://ceciliaguo331.github.io/friends.html', target: '_self' },
     ],
 
     sidebar: [
