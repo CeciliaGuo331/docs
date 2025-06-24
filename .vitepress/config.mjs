@@ -2,28 +2,33 @@ import { defineConfig } from 'vitepress'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
-  title: "aq's blog",
+  title: "sparkles",
   description: "record my life",
   base: '/docs/',
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     nav: [
-      { text: 'Home', link: '/' },
-      { text: 'Examples', link: '/markdown-examples' }
+      { text: 'Contents', link: '/' },
+      { text: 'Home', link: 'https://ceciliaguo331.github.io/', target: '_self' },
     ],
 
     sidebar: [
       {
-        text: 'Examples',
+        text: 'Idea',
         items: [
-          { text: 'Markdown Examples', link: '/markdown-examples' },
-          { text: 'Runtime API Examples', link: '/api-examples' }
+          { text: '2024', link: '/content/idea/2024' }
+        ]
+      },
+      {
+        text: 'Note',
+        items: [
+          { text: '北欧高福利经济掠影', link: '/content/note/北欧高福利经济掠影.md' }
         ]
       }
     ],
 
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/vuejs/vitepress' }
+      { icon: 'github', link: 'https://github.com/CeciliaGuo331' }
     ]
   }
 })
