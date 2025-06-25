@@ -120,7 +120,7 @@ import { withBase } from 'vitepress'
   margin: 0;
   font-size: 14px;
   font-weight: 500;
-  color: var(--vp-c-brand-1);
+  color: var(--article-list-text-color);
   transition: color 0.25s;
 }
 

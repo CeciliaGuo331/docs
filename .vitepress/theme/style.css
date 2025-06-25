@@ -132,3 +132,11 @@
 .DocSearch {
   --docsearch-primary-color: var(--vp-c-brand-1) !important;
 }
+
+:root {
+  --article-list-text-color: #0e4b00db;
+}
+
+.dark {
+  --article-list-text-color: #a7dcb5;
+}
