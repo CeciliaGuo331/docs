@@ -98,6 +98,9 @@ import { withBase } from 'vitepress'
   font-weight: 600;
   color: var(--vp-c-text-1);
   transition: color 0.25s;
+  border-top: none;
+  padding-top: 0;
+  margin-top: 0;
 }
 
 .details {
