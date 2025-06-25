@@ -6,10 +6,10 @@
 
 整个自动化流程可以概括为四个步骤：
 
-1. **✍️ 撰写文章**: 您只需在 `content` 目录下创建 Markdown 文件，并在文件头部添加必要的元数据 (Frontmatter)。
-2. **⚙️ 运行命令**: 当您在本地运行 `npm run doc:dev` 或在服务器上构建 `npm run docs:build` 时，自动化脚本会自动执行。
-3. **📊 生成数据**: 脚本会扫描所有文章，提取元数据，并生成一系列结构化的 JSON 文件（如文章列表、标签、时间线等）。这些文件保存在 `/public` 目录下。
-4. **🖼️ 渲染页面**: 博客中的特定 Vue 组件（如文章列表、标签云等）会读取这些 JSON 文件，并将数据动态渲染到页面上。
+1.  **✍️ 撰写文章**: 您只需在 `content` 目录下创建 Markdown 文件，并在文件头部添加必要的元数据 (Frontmatter)。脚本会自动忽略所有名为 `template.md` 的文件。
+2.  **⚙️ 运行命令**: 当您在本地运行 `npm run docs:dev` 或在服务器上构建 `npm run docs:build` 时，自动化脚本会自动执行。
+3.  **📊 生成数据**: 脚本会扫描所有文章，提取元数据，并生成两个结构化的 JSON 文件 (`articles.json` 和 `sidebar.json`)。这些文件保存在 `/public` 目录下。
+4.  **🖼️ 渲染页面**: VitePress 配置和特定的 Vue 组件会读取这些 JSON 文件，并将数据动态渲染到页面上。
 
 ## 📝 文章元数据 (Frontmatter)
 
@@ -22,47 +22,44 @@
 title: "在这里输入标题"
 date: YYYY-MM-DD
 details: "在这里写下想法的简要描述"
+tags: ["标签1", "标签2"]
 ---
 ```
 
 **字段说明:**
 
-* `title`: **(必需)** 文章的正式标题。
-* `date`: **(必需)** 文章的发布日期。
-* `details`: **(必需)** 文章摘要，用于在列表页显示。
+*   `title`: **(必需)** 文章的正式标题。
+*   `date`: **(必需)** 文章的发布日期。
+*   `details`: **(必需)** 文章摘要，用于在列表页显示。
+*   `tags`: **(可选)** 文章的标签数组。
 
 ## 🛠️ 核心自动化脚本
 
-* **脚本位置**: `scripts/generate-article-list.js` (或类似路径)
-* **主要功能**:
-  * 扫描 `content` 目录下的所有文章。
-  * 解析每篇文章的 Frontmatter。
-  * 计算统计数据（如字数、阅读时间）。
-  * 生成以下 JSON 数据文件。
+*   **脚本位置**: `scripts/generate-content-data.mjs`
+*   **主要功能**:
+    *   扫描 `content` 目录下的所有文章（忽略 `template.md`）。
+    *   解析每篇文章的 Frontmatter。
+    *   计算统计数据（如字数、阅读时间）。
+    *   生成供前端使用的数据文件。
 
 ## 📦 生成的数据文件
 
-自动化脚本会生成以下文件，供前端组件使用：
+自动化脚本会生成以下文件，供前端使用：
 
-* `/public/articles.json`: 所有文章的详细列表。
-* `/public/timeline.json`: 用于生成时间线页面的数据。
-* `/public/tags.json`: 包含所有标签及其对应文章的数据。
-* `/public/stats.json`: 博客的全局统计信息（文章总数、总字数等）。
+*   `/public/articles.json`: 所有文章的详细列表，包含完整的元数据。此文件中的 `url` 字段带有 `/docs/` 前缀，主要用于主页的文章列表。
+*   `/public/sidebar.json`: VitePress 侧边栏的配置文件。此文件中的 `link` 字段不带 `/docs/` 前缀，以确保侧边栏导航正确。
 
-## 🧩 前端组件
+## 🧩 数据消费
 
-以下组件直接消费上述 JSON 数据，无需手动传参：
+生成的数据主要通过以下方式消费：
 
-* `<ArticleList />`: 显示文章列表。
-* `<CategoryPage />`: 显示特定分类下的文章。
-* `<TimelineView />`: 渲染文章时间线。
-* `<TagsView />`: 渲染标签云。
-* `<BlogStats />`: 显示博客统计数据。
+*   **VitePress 侧边栏**: `.vitepress/config.mjs` 直接导入并使用 `/public/sidebar.json` 来动态生成侧边栏。
+*   **前端组件**: 自定义 Vue 组件（如文章列表）可以获取并渲染 `/public/articles.json` 的内容。
 
 ## 🔧 自定义配置
 
-如果您需要调整自动化行为，可以修改核心脚本 `scripts/generate-article-list.js`，例如：
+如果您需要调整自动化行为，可以修改核心脚本 `scripts/generate-content-data.mjs`，例如：
 
-* 更改扫描的目录。
-* 调整数据输出路径或格式。
-* 修改统计信息的计算逻辑。
+*   更改扫描的目录或忽略规则。
+*   调整数据输出路径或格式。
+*   修改统计信息的计算逻辑。
