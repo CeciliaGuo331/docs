@@ -139,3 +139,17 @@ html.dark {
 .DocSearch {
   --docsearch-primary-color: var(--vp-c-brand-1) !important;
 }
+
+
+/* 调整品牌色 & 活动导航链接颜色 */
+:root {
+  --vp-c-brand-1: #0e4b00db;
+  /* 品牌色 - 悬停状态 */
+  --vp-c-brand-2: #009628db;
+}
+
+:root.dark {
+  --vp-c-brand-1: #a7dcb5;
+  /* 品牌色 - 悬停状态 */
+  --vp-c-brand-2: #53b87f;
+}
