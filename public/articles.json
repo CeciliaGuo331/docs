@@ -1,0 +1,42 @@
+[
+  {
+    "title": "2024随想",
+    "url": "/docs/content/idea/2024.html",
+    "date": "2024-12-31",
+    "description": "2024.12.31",
+    "category": "idea",
+    "tags": [],
+    "wordCount": 734,
+    "readingTime": 4
+  },
+  {
+    "title": "在这里输入标题",
+    "url": "/docs/content/idea/template.html",
+    "date": "YYYY-MM-DD",
+    "description": "在这里写下想法的简要描述",
+    "category": "idea",
+    "tags": [],
+    "wordCount": 15,
+    "readingTime": 1
+  },
+  {
+    "title": "在这里输入笔记标题",
+    "url": "/docs/content/note/template.html",
+    "date": "YYYY-MM-DD",
+    "description": "这篇笔记的核心内容摘要",
+    "category": "note",
+    "tags": [],
+    "wordCount": 20,
+    "readingTime": 1
+  },
+  {
+    "title": "北欧高福利神话的现实审视",
+    "url": "/docs/content/note/北欧高福利经济掠影.html",
+    "date": "2024-04-30",
+    "description": "以瑞典为例看经济承压与模式可持续性",
+    "category": "note",
+    "tags": [],
+    "wordCount": 1700,
+    "readingTime": 9
+  }
+]

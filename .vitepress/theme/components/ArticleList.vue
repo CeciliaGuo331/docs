@@ -1,6 +1,13 @@
 <script setup>
-import { data as posts } from '../posts.data.mjs'
+import { ref, onMounted } from 'vue'
 import { withBase } from 'vitepress'
+
+const posts = ref([])
+
+onMounted(async () => {
+  const response = await fetch(withBase('/articles.json'))
+  posts.value = await response.json()
+})
 </script>
 
 <template>
@@ -9,7 +16,7 @@ import { withBase } from 'vitepress'
       <div class="items">
         <div class="item" v-for="post in posts.filter(p => !p.url.includes('template'))" :key="post.url">
           <article class="vp-feature">
-            <a :href="withBase(post.url)" class="feature-link">
+            <a :href="post.url" class="feature-link">
               <h2 class="title">{{ post.title }}</h2>
               <p class="details">{{ post.details }}</p>
               <div class="link-text">

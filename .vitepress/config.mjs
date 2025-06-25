@@ -1,5 +1,5 @@
 import { defineConfig } from 'vitepress'
-import { generateSidebar } from './sidebar.mjs'
+import sidebar from '../public/sidebar.json'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
@@ -16,7 +16,7 @@ export default defineConfig({
       { text: 'Friends', link: 'https://ceciliaguo331.github.io/friends.html', target: '_self' },
     ],
 
-    sidebar: generateSidebar(),
+    sidebar: sidebar,
 
     socialLinks: [
       { icon: 'github', link: 'https://github.com/CeciliaGuo331' }

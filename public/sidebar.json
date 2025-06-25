@@ -1,0 +1,30 @@
+[
+  {
+    "text": "idea",
+    "items": [
+      {
+        "text": "2024随想",
+        "link": "/docs/content/idea/2024.html"
+      },
+      {
+        "text": "在这里输入标题",
+        "link": "/docs/content/idea/template.html"
+      }
+    ],
+    "collapsed": true
+  },
+  {
+    "text": "note",
+    "items": [
+      {
+        "text": "在这里输入笔记标题",
+        "link": "/docs/content/note/template.html"
+      },
+      {
+        "text": "北欧高福利神话的现实审视",
+        "link": "/docs/content/note/北欧高福利经济掠影.html"
+      }
+    ],
+    "collapsed": true
+  }
+]

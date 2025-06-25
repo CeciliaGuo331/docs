@@ -2,7 +2,8 @@
   "permissions": {
     "allow": [
       "Bash(ls -R)",
-      "Bash(npm run docs:dev)"
+      "Bash(npm run docs:dev)",
+      "Bash(npm run generate)"
     ],
     "deny": []
   }
