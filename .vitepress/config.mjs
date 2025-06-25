@@ -1,4 +1,5 @@
 import { defineConfig } from 'vitepress'
+import { generateSidebar } from './sidebar.mjs'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
@@ -15,20 +16,7 @@ export default defineConfig({
       { text: 'Friends', link: 'https://ceciliaguo331.github.io/friends.html', target: '_self' },
     ],
 
-    sidebar: [
-      {
-        text: 'Idea',
-        items: [
-          { text: '2024', link: '/content/idea/2024' }
-        ]
-      },
-      {
-        text: 'Note',
-        items: [
-          { text: '北欧高福利经济掠影', link: '/content/note/北欧高福利经济掠影.md' }
-        ]
-      }
-    ],
+    sidebar: generateSidebar(),
 
     socialLinks: [
       { icon: 'github', link: 'https://github.com/CeciliaGuo331' }
