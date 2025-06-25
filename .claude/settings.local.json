@@ -3,7 +3,8 @@
     "allow": [
       "Bash(ls -R)",
       "Bash(npm run docs:dev)",
-      "Bash(npm run generate)"
+      "Bash(npm run generate)",
+      "Bash(npm run docs:build)"
     ],
     "deny": []
   }

@@ -9,7 +9,7 @@ const contentDir = path.join(process.cwd(), 'content');
 const publicDir = path.join(process.cwd(), 'public');
 
 async function generateContentData() {
-  const files = await globby('**/*.md', { cwd: contentDir });
+  const files = await globby('**/*.md', { cwd: contentDir, ignore: ['**/template.md'] });
 
   const articles = await Promise.all(
     files.map(async (file) => {
