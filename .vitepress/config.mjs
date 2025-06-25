@@ -1,3 +1,4 @@
+
 import { defineConfig } from 'vitepress'
 import { globbySync } from 'globby'
 import grayMatter from 'gray-matter'
@@ -11,41 +12,61 @@ function getSidebar() {
     ignore: ['**/template.md'],
   });
 
-  const posts = files.map(file => {
+  const sidebar = [];
+
+  files.forEach(file => {
     const filePath = path.join(contentDir, file);
     const fileContent = fs.readFileSync(filePath, 'utf-8');
     const { data } = grayMatter(fileContent);
-    const category = path.dirname(file).split('/')[0];
 
-    return {
-      title: data.title || 'Untitled',
-      category: category === '.' ? 'main' : category,
-      url: `/content/${file.replace(/\.md$/, '.html')}`
-    }
-  });
+    const pathSegments = path.dirname(file).split('/').filter(p => p !== '.' && p !== '');
 
-  const sidebar = posts.reduce((acc, post) => {
-    let categoryEntry = acc.find((c) => c.text === post.category);
-    if (!categoryEntry) {
-      categoryEntry = {
-        text: post.category,
-        items: [],
-        collapsed: true,
-      };
-      acc.push(categoryEntry);
+    let currentLevel = sidebar;
+
+    // Handle root-level files by creating a 'main' category
+    if (pathSegments.length === 0) {
+      pathSegments.push('main');
     }
-    categoryEntry.items.push({
-      text: post.title,
-      link: post.url,
+
+    pathSegments.forEach(segment => {
+      let node = currentLevel.find(item => item.text === segment && item.items);
+      if (!node) {
+        node = {
+          text: segment,
+          items: [],
+          collapsed: true
+        };
+        currentLevel.push(node);
+      }
+      currentLevel = node.items;
     });
-    return acc;
-  }, []);
 
-  sidebar.sort((a, b) => a.text.localeCompare(b.text));
-  sidebar.forEach(category => {
-    category.items.sort((a, b) => a.text.localeCompare(b.text));
+    currentLevel.push({
+      text: data.title || 'Untitled',
+      link: `/content/${file.replace(/\.md$/, '.html')}`
+    });
   });
 
+  // Recursive sort function
+  function sortItems(items) {
+    items.sort((a, b) => {
+      // Directories first
+      const aIsGroup = !!a.items;
+      const bIsGroup = !!b.items;
+      if (aIsGroup && !bIsGroup) return -1;
+      if (!aIsGroup && bIsGroup) return 1;
+      // Then by text
+      return a.text.localeCompare(b.text);
+    });
+    // Sort sub-items recursively
+    items.forEach(item => {
+      if (item.items) {
+        sortItems(item.items);
+      }
+    });
+  }
+
+  sortItems(sidebar);
   return sidebar;
 }
 
