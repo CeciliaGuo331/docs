@@ -1,7 +1,19 @@
 ---
-title: template title
-date: '1111-11-11'
-linkText: template linktext
-details: template details
+title: "在这里输入笔记标题"
+date: YYYY-MM-DD
+details: "这篇笔记的核心内容摘要"
+linkText: "查看详情"
+tags: []
 ---
-template
+
+## 摘要
+
+在这里写下笔记的摘要。
+
+## 关键点
+
+- 
+
+## 参考文献
+
+- 
