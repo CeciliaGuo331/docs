@@ -99,12 +99,12 @@ import { withBase } from 'vitepress'
   color: var(--vp-c-text-1);
   transition: color 0.25s;
   border-top: none;
-  padding-top: 0;
+  padding-top: 5px;
   margin-top: 0;
 }
 
 .details {
-  padding-top: 8px;
+  padding-top: 0px;
   line-height: 24px;
   font-size: 14px;
   font-weight: 500;
@@ -112,7 +112,7 @@ import { withBase } from 'vitepress'
 }
 
 .link-text {
-  padding-top: 16px;
+  padding-top: 0px;
 }
 
 .link {
