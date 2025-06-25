@@ -137,15 +137,15 @@
   /* --vp-c-bg-alt:  */
 
   /* 全局/导航栏 */
-  --vp-c-brand-1: #a0cdad;
-  --vp-c-brand-2: #53b87f;
+  --vp-c-brand-1: #8ef1d4;
+  --vp-c-brand-2: #00979c;
   /* 悬停颜色 */
 
   /* 首页 Hero */
-  --vp-home-hero-name-background: -webkit-linear-gradient(120deg, #78ff91 35%, #b2ffc2 65%);
+  --vp-home-hero-name-background: -webkit-linear-gradient(120deg, #00979c 35%, #78ffd7 65%);
 
   /* 文章列表 */
-  --article-list-text-color: #c6e6cf;
+  --article-list-text-color: #8ef1d4;
 }
 
 /* 响应式调整 */
