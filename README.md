@@ -33,8 +33,10 @@
 
 ## 项目结构
 
--   `.vitepress/`: 存放 VitePress 的配置文件，例如 `config.mjs` 定义了网站标题、导航、侧边栏等。
+-   `.vitepress/`: 存放 VitePress 的配置。
+    -   `config.mjs`: 定义了网站的标题、导航和侧边栏等。
+    -   `theme/`: 用于存放自定义主题文件，例如 `ArticleList.vue` 组件用于在主页展示文章列表。
 -   `content/`: 存放所有 Markdown 内容文件。
-    -   `idea/`: 记录想法。
-    -   `note/`: 记录笔记。
+    -   `idea/`: 用于记录个人想法和感悟。
+    -   `note/`: 用于存放学习笔记和知识整理。
 -   `package.json`: 定义了项目依赖和脚本命令。

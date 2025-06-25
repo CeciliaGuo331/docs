@@ -7,7 +7,7 @@ import { withBase } from 'vitepress'
   <div class="vp-features">
     <div class="container">
       <div class="items">
-        <div class="item" v-for="post in posts" :key="post.url">
+        <div class="item" v-for="post in posts.filter(p => !p.url.includes('template'))" :key="post.url">
           <article class="vp-feature">
             <a :href="withBase(post.url)" class="feature-link">
               <h2 class="title">{{ post.title }}</h2>
