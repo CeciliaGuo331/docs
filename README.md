@@ -39,8 +39,10 @@
 
 - `.vitepress/`: 存放 VitePress 的配置。
   - `config.mjs`: 定义了网站的标题、导航和侧边栏等。
-  - `theme/`: 用于存放自定义主题文件，例如 `ArticleList.vue` 组件用于在主页展示文章列表。
+  - `theme/`: 用于存放自定义主题文件。
 - `content/`: 存放所有 Markdown 内容文件。
+  - `guide/`: 存放项目使用指南和规范。
   - `idea/`: 用于记录个人想法和感悟。
   - `note/`: 用于存放学习笔记和知识整理。
+- `image/`: 存放项目中使用的图片资源。
 - `package.json`: 定义了项目依赖和脚本命令。
