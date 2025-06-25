@@ -49,8 +49,8 @@
   --vp-c-default-3: var(--vp-c-gray-3);
   --vp-c-default-soft: var(--vp-c-gray-soft);
 
-  --vp-c-brand-1: var(--vp-c-indigo-1);
-  --vp-c-brand-2: var(--vp-c-indigo-2);
+  /* --vp-c-brand-1: var(--vp-c-indigo-1); */
+  /* --vp-c-brand-2: var(--vp-c-indigo-2); */
   --vp-c-brand-3: var(--vp-c-indigo-3);
   --vp-c-brand-soft: var(--vp-c-indigo-soft);
 
@@ -88,40 +88,6 @@
 }
 
 /**
- * Component: Home
- * -------------------------------------------------------------------------- */
-
-:root {
-  --vp-home-hero-name-color: transparent;
-  --vp-home-hero-name-background: -webkit-linear-gradient(120deg,
-      #115e00cb 35%,
-      #33be3ce8 65%);
-
-  --vp-home-hero-image-background-image: linear-gradient(-45deg,
-      #bd34fe 50%,
-      #47caff 50%);
-  --vp-home-hero-image-filter: blur(44px);
-  --article-list-text-color: #0e4b00db;
-}
-
-html.dark {
-  --article-list-text-color: #a7dcb5;
-  --vp-home-hero-name-background: -webkit-linear-gradient(120deg, #78ff91 35%, #b2ffc2 65%);
-}
-
-@media (min-width: 640px) {
-  :root {
-    --vp-home-hero-image-filter: blur(56px);
-  }
-}
-
-@media (min-width: 960px) {
-  :root {
-    --vp-home-hero-image-filter: blur(68px);
-  }
-}
-
-/**
  * Component: Custom Block
  * -------------------------------------------------------------------------- */
 
@@ -140,16 +106,57 @@ html.dark {
   --docsearch-primary-color: var(--vp-c-brand-1) !important;
 }
 
+/* --- 自定义样式 --- */
 
-/* 调整品牌色 & 活动导航链接颜色 */
+/* 亮色模式 */
 :root {
+  /* 全局/导航栏 */
   --vp-c-brand-1: #0e4b00db;
-  /* 品牌色 - 悬停状态 */
   --vp-c-brand-2: #009628db;
+  /* 悬停颜色 */
+
+  /* 首页 Hero */
+  --vp-home-hero-name-color: transparent;
+  --vp-home-hero-name-background: -webkit-linear-gradient(120deg, #115e00cb 35%, #33be3ce8 65%);
+  --vp-home-hero-image-background-image: linear-gradient(-45deg, #bd34fe 50%, #47caff 50%);
+  --vp-home-hero-image-filter: blur(44px);
+
+  /* 文章列表 */
+  --article-list-text-color: #0e4b00db;
 }
 
+/* 暗色模式 */
 :root.dark {
-  --vp-c-brand-1: #a7dcb5;
-  /* 品牌色 - 悬停状态 */
+  /* 背景颜色 */
+  --vp-c-bg: #181818;
+  /* 用于一些更柔和的背景，比如自定义容器的背景 */
+  --vp-c-bg-soft: #1f1f1f;
+  /* 专门用于侧边栏的背景色 */
+  --vp-sidebar-bg-color: #151515;
+  /* 用于交替背景，比如表格的隔行换色 */
+  /* --vp-c-bg-alt:  */
+
+  /* 全局/导航栏 */
+  --vp-c-brand-1: #a0cdad;
   --vp-c-brand-2: #53b87f;
+  /* 悬停颜色 */
+
+  /* 首页 Hero */
+  --vp-home-hero-name-background: -webkit-linear-gradient(120deg, #78ff91 35%, #b2ffc2 65%);
+
+  /* 文章列表 */
+  --article-list-text-color: #c6e6cf;
+}
+
+/* 响应式调整 */
+@media (min-width: 640px) {
+  :root {
+    --vp-home-hero-image-filter: blur(56px);
+  }
+}
+
+@media (min-width: 960px) {
+  :root {
+    --vp-home-hero-image-filter: blur(68px);
+  }
 }
