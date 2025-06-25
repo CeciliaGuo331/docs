@@ -78,6 +78,7 @@ export default defineConfig({
   srcExclude: ['README.md', 'TODO.md'],
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
+    appearance: 'light',
     nav: [
       { text: 'Home', link: 'https://ceciliaguo331.github.io/', target: '_self' },
       { text: 'Sparkles', link: '/' },
