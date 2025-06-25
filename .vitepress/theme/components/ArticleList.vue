@@ -13,7 +13,8 @@ import { withBase } from 'vitepress'
               <h2 class="title">{{ post.title }}</h2>
               <p class="details">{{ post.details }}</p>
               <div class="link-text">
-                                <p class="link">分类：{{ post.category }} | 上传时间：{{ new Date(post.date).toLocaleDateString('sv-SE') }} | 字数：{{ post.wordCount }} | 阅读时间：{{ post.readingTime }}分钟</p>
+                                                <p class="link">分类：{{ post.category }} | 上传时间：{{ new Date(post.date).toLocaleDateString('sv-SE') }}</p>
+                <p class="link">字数：{{ post.wordCount }} | 阅读时间：{{ post.readingTime }}分钟</p>
               </div>
             </a>
           </article>
