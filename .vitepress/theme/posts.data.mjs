@@ -11,18 +11,21 @@ function calculateReadingInfo(content) {
 }
 
 export default createContentLoader('content/**/*.md', {
+  ignore: ['**/template.md'],
   includeSrc: true,
   transform(raw) {
     return raw
       .map((data) => {
         const { url, frontmatter, src } = data;
         const { wordCount, readingTime } = calculateReadingInfo(src);
-        const category = url.split('/')[2];
+        const urlParts = url.split('/');
+        const category = urlParts.length === 3 ? 'main' : urlParts[2];
         return {
           title: frontmatter.title,
           url,
           date: frontmatter.date ? new Date(frontmatter.date) : new Date(),
           details: frontmatter.details,
+          tags: frontmatter.tags || [],
           category: category,
           wordCount: wordCount,
           readingTime: readingTime,

@@ -1,5 +1,53 @@
 import { defineConfig } from 'vitepress'
-import sidebar from '../public/sidebar.json'
+import { globbySync } from 'globby'
+import grayMatter from 'gray-matter'
+import path from 'path'
+import fs from 'fs'
+
+function getSidebar() {
+  const contentDir = path.resolve(process.cwd(), 'content');
+  const files = globbySync('**/*.md', {
+    cwd: contentDir,
+    ignore: ['**/template.md'],
+  });
+
+  const posts = files.map(file => {
+    const filePath = path.join(contentDir, file);
+    const fileContent = fs.readFileSync(filePath, 'utf-8');
+    const { data } = grayMatter(fileContent);
+    const category = path.dirname(file).split('/')[0];
+
+    return {
+      title: data.title || 'Untitled',
+      category: category === '.' ? 'main' : category,
+      url: `/content/${file.replace(/\.md$/, '.html')}`
+    }
+  });
+
+  const sidebar = posts.reduce((acc, post) => {
+    let categoryEntry = acc.find((c) => c.text === post.category);
+    if (!categoryEntry) {
+      categoryEntry = {
+        text: post.category,
+        items: [],
+        collapsed: true,
+      };
+      acc.push(categoryEntry);
+    }
+    categoryEntry.items.push({
+      text: post.title,
+      link: post.url,
+    });
+    return acc;
+  }, []);
+
+  sidebar.sort((a, b) => a.text.localeCompare(b.text));
+  sidebar.forEach(category => {
+    category.items.sort((a, b) => a.text.localeCompare(b.text));
+  });
+
+  return sidebar;
+}
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
@@ -16,7 +64,7 @@ export default defineConfig({
       { text: 'Friends', link: 'https://ceciliaguo331.github.io/friends.html', target: '_self' },
     ],
 
-    sidebar: sidebar,
+    sidebar: getSidebar(),
 
     socialLinks: [
       { icon: 'github', link: 'https://github.com/CeciliaGuo331' }
