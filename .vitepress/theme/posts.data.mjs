@@ -17,11 +17,13 @@ export default createContentLoader('content/**/*.md', {
       .map((data) => {
         const { url, frontmatter, src } = data;
         const { wordCount, readingTime } = calculateReadingInfo(src);
+        const category = url.split('/')[2];
         return {
           title: frontmatter.title,
           url,
           date: frontmatter.date ? new Date(frontmatter.date) : new Date(),
           details: frontmatter.details,
+          category: category,
           wordCount: wordCount,
           readingTime: readingTime,
         }
