@@ -108,6 +108,23 @@
 
 /* --- 自定义样式 --- */
 
+:root {
+  /* 
+    设置侧边栏每一级的缩进量。
+    VitePress 会将这个值乘以降序的层级数。
+    例如，level-1 的缩进是 1 * 16px，level-2 是 2 * 16px，以此类推。
+  */
+  --vp-sidebar-item-indent: 16px;
+}
+
+/* 为长标题设置省略号，防止破坏布局 */
+.VPSidebarItem .text {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: block;
+}
+
 /* 亮色模式 */
 :root {
   /* 全局/导航栏 */
