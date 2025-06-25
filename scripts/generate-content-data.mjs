@@ -17,7 +17,7 @@ async function generateContentData() {
       const fileContent = await fs.readFile(filePath, 'utf-8');
       const { data, content } = grayMatter(fileContent);
       const stats = readingTime(content);
-      const url = `/docs/content/${file.replace(/\.md$/, '.html')}`;
+      const url = `/content/${file.replace(/\.md$/, '.html')}`;
       const category = path.dirname(file).split('/')[0];
 
       return {
@@ -36,8 +36,15 @@ async function generateContentData() {
   articles.sort((a, b) => new Date(b.date) - new Date(a.date));
 
   await fs.ensureDir(publicDir);
-  await fs.writeJson(path.join(publicDir, 'articles.json'), articles, { spaces: 2 });
 
+  // For articles.json, urls need to be prefixed with /docs/
+  const articlesForJson = articles.map(article => ({
+    ...article,
+    url: `/docs${article.url}`
+  }));
+  await fs.writeJson(path.join(publicDir, 'articles.json'), articlesForJson, { spaces: 2 });
+
+  // For sidebar.json, urls should not be prefixed
   const sidebar = articles.reduce((acc, article) => {
     let categoryEntry = acc.find((c) => c.text === article.category);
     if (!categoryEntry) {
