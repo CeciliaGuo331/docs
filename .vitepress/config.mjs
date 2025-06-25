@@ -25,6 +25,13 @@ export default defineConfig({
     footer: {
       message: 'aq\'s days & nights',
       copyright: 'Copyright © 2025 <a href="https://github.com/CeciliaGuo331">CeciliaGuo</a>'
+    },
+    markdown: {
+      lineNumbers: true,
+      math: true,
+      image: {
+        lazyLoading: true
+      },
     }
   }
 })

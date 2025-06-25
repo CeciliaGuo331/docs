@@ -50,7 +50,7 @@ import { withBase } from 'vitepress'
 .items {
   display: flex;
   flex-wrap: wrap;
-  margin: -75px;
+  margin: -75px -75px 0;
   position: relative;
   top: 75px;
 }
