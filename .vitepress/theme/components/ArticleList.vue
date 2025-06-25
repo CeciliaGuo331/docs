@@ -49,7 +49,9 @@ import { withBase } from 'vitepress'
 .items {
   display: flex;
   flex-wrap: wrap;
-  margin: -8px;
+  margin: -75px;
+  position: relative;
+  top: 75px;
 }
 
 .item {
