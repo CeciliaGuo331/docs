@@ -3,17 +3,9 @@
 layout: home
 
 hero:
-  name: "sparkles"
-  text: "record my life"
-  tagline: My great project tagline
-  
-  # actions:
-  #   - theme: brand
-  #     text: Markdown Examples
-  #     link: /markdown-examples
-  #   - theme: alt
-  #     text: API Examples
-  #     link: /api-examples
+  name: sparkles
+  text: 记录思考的火花
+  tagline: 晨钟暮鼓，兀兀穷年
 ---
 
 <ArticleList />
