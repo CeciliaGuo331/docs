@@ -2,7 +2,7 @@
 title: "文章标题"
 date: YYYY-MM-DD
 details: "这是一段关于文章内容的简要描述，会显示在文章列表页。"
-tags: ["标签一", "标签二", "技术"]
+tags: ["标签一", "标签二", "guide"]
 ---
 
 # Markdown 语法示例 (一级标题)

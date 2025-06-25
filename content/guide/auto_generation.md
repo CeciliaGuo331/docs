@@ -5,20 +5,26 @@ details: 介绍本博客的内容自动化工作流
 ---
 # 自动化内容生成指南
 
-本文档介绍本博客的内容自动化工作流。该系统利用 VitePress 内置的数据加载器，实现了高效、实时的内容管理，让您只需专注于写作。
+本文档介绍本博客的内容自动化工作流。该系统采用了一种混合模式，结合了 VitePress 的同步配置和异步数据加载，以实现稳定、高效的内容管理。
 
 ## ✨ 工作原理
 
-整个自动化流程完全集成在 VitePress 的生命周期中：
+整个自动化流程分为两个并行部分：
 
-1. **✍️ 撰写文章**: 您只需在 `content` 目录下创建或修改 Markdown 文件。VitePress 会自动监测这些文件的变化。
-2. **⚙️ 实时处理**: 在开发模式下 (`npm run docs:dev`)，VitePress 的数据加载器会**实时**扫描所有文章，提取元数据，并应用转换逻辑。所有更改都会**热重载 (Hot-reload)**，无需手动刷新。
-3. **📦 数据注入**: 处理后的数据被转换成一个名为 `posts.data.mjs` 的模块。这个模块可以在任何 VitePress 页面或组件中直接导入和使用。
-4. **🖼️ 动态渲染**: Vue 组件（如文章列表）和 VitePress 配置（如侧边栏）直接从 `posts.data.mjs` 模块中获取数据，动态渲染页面内容。
+1. **侧边栏生成 (同步)**:
+    * 当您启动开发服务器 (`npm run docs:dev`) 或构建项目时，`.vitepress/config.mjs` 文件中的 `getSidebar` 函数会**立即、同步地**扫描 `content` 目录。
+    * 它会读取所有文章的元数据，并根据目录结构生成侧边栏配置。这个过程是即时的，以确保 VitePress 服务器能正确启动。
+
+2. **页面内容加载 (异步, 支持热重载)**:
+    * 对于像首页文章列表这样的动态组件，我们使用 `.vitepress/theme/posts.data.mjs` 文件。
+    * 它利用 VitePress 的 `createContentLoader` API **异步**加载文章内容。
+    * 在开发模式下，当您修改 Markdown 文件时，这个机制支持**热重载 (Hot-reload)**，您无需刷新浏览器就能看到文章列表的更新。
+
+这种混合设计，确保了服务器启动的稳定性和开发体验的流畅性。
 
 ## 📝 文章元数据 (Frontmatter)
 
-为了让数据加载器正确识别和处理您的文章，请务必在每个 `.md` 文件顶部添加 `frontmatter`。
+为了让两个自动化流程都能正确识别和处理您的文章，请务必在每个 `.md` 文件顶部添加 `frontmatter`。
 
 **示例:**
 
@@ -36,28 +42,35 @@ tags: ["标签1", "标签2"]
 * `title`: **(必需)** 文章的正式标题。
 * `date`: **(必需)** 文章的发布日期。
 * `details`: **(必需)** 文章摘要，用于在列表页显示。
-* `tags`: **(可选)** 文章的标签数组。
+* `tags`: **(可选)** 文章的标签数组，主要由 `posts.data.mjs` 使用。
 
-## 🛠️ 核心数据加载器
+## 🛠️ 核心自动化逻辑
 
-* **文件位置**: `.vitepress/theme/posts.data.mjs`
-* **核心功能**:
-  * 使用 VitePress 的 `createContentLoader` API 监听 `content/**/*.md` 文件。
+项目的自动化由以下两个核心文件驱动：
+
+### 1. `.vitepress/config.mjs` (用于侧边栏)
+
+* **功能**: 同步生成侧边栏。
+* **实现**: 包含一个 `getSidebar` 函数，该函数：
+  * 使用 `globbySync` 库同步扫描 `content/**/*.md` 文件。
   * 自动忽略 `template.md` 文件。
-  * 解析每篇文章的 Frontmatter。
-  * 计算阅读时间、字数等统计信息。
-  * 将所有文章数据排序并导出为一个模块。
+  * 解析每篇文章的 Frontmatter，提取 `title` 和 `category`。
+  * 构建并返回 VitePress 所需的侧边栏数据结构。
+
+### 2. `.vitepress/theme/posts.data.mjs` (用于页面组件)
+
+* **功能**: 为 Vue 组件提供异步、可热重载的文章数据。
+* **实现**: 使用 VitePress 的 `createContentLoader` API：
+  * 监听 `content/**/*.md` 文件的变化。
+  * 解析完整的 Frontmatter 和内容，计算阅读时间等信息。
+  * 将所有文章数据排序并导出为一个模块，供 `ArticleList.vue` 等组件使用。
 
 ## 🧩 数据消费
 
-与旧方法不同，新架构**不再生成任何静态 JSON 文件**。数据消费通过直接导入模块来完成：
-
-* **VitePress 侧边栏**: `.vitepress/config.mjs` 文件导入 `posts.data.mjs`，并动态生成侧边栏结构。
-* **前端组件**: 任何需要文章数据的 Vue 组件（如 `ArticleList.vue`）都可以通过 `import { data as posts } from '../posts.data.mjs'` 来直接获取所有文章数据并进行渲染。
+* **侧边栏**: 直接在 `.vitepress/config.mjs` 中由 `getSidebar()` 函数的返回值提供。
+* **前端组件**: 像 `ArticleList.vue` 这样的组件，通过 `import { data as posts } from '../posts.data.mjs'` 来直接获取完整的文章数据数组并进行渲染。
 
 ## 🔧 自定义配置
 
-如果您需要调整自动化行为，可以直接修改核心数据加载器 `.vitepress/theme/posts.data.mjs`，例如：
-
-* 修改 `createContentLoader` 的 glob 模式以更改扫描范围。
-* 在 `transform` 函数中调整数据处理逻辑，例如添加新的元数据或修改计算方式。
+* **若要修改侧边栏** (如分类逻辑、排序等)，请编辑 `.vitepress/config.mjs` 中的 `getSidebar` 函数。
+* **若要修改文章列表显示的内容** (如增减元数据、调整阅读时间计算等)，请编辑 `.vitepress/theme/posts.data.mjs`。
