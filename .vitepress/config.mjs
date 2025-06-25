@@ -16,7 +16,11 @@ export default defineConfig({
       { text: 'Friends', link: 'https://ceciliaguo331.github.io/friends.html', target: '_self' },
     ],
 
-    sidebar: generateSidebar(),
+    sidebar: (() => {
+      const sidebar = generateSidebar();
+      console.log(JSON.stringify(sidebar, null, 2));
+      return sidebar;
+    })(),
 
     socialLinks: [
       { icon: 'github', link: 'https://github.com/CeciliaGuo331' }
