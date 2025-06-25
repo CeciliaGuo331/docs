@@ -20,6 +20,11 @@ export default defineConfig({
 
     socialLinks: [
       { icon: 'github', link: 'https://github.com/CeciliaGuo331' }
-    ]
+    ],
+
+    footer: {
+      message: 'aq\'s days & nights',
+      copyright: 'Copyright © 2025 <a href="https://github.com/CeciliaGuo331">CeciliaGuo</a>'
+    }
   }
 })

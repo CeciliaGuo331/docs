@@ -1,10 +1,10 @@
 ---
-title: template title
-date: '1111-11-11'
-linkText: template linktext
-details: template details
+title: "在这里输入标题"
+date: YYYY-MM-DD
+details: "在这里写下想法的简要描述"
+linkText: "阅读更多"
 ---
 
-# template
+## 想法
 
-template
+在这里自由地写下你的想法...
