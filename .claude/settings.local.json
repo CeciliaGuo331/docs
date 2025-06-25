@@ -1,7 +1,8 @@
 {
   "permissions": {
     "allow": [
-      "Bash(ls -R)"
+      "Bash(ls -R)",
+      "Bash(npm run docs:dev)"
     ],
     "deny": []
   }

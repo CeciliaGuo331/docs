@@ -2,7 +2,6 @@
 title: "在这里输入笔记标题"
 date: YYYY-MM-DD
 details: "这篇笔记的核心内容摘要"
-linkText: "查看详情"
 tags: []
 ---
 
