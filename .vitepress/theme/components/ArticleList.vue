@@ -27,20 +27,22 @@ import { data as posts } from '../posts.data.mjs'
 <style scoped>
 .vp-features {
   position: relative;
-  padding: 0 24px;
+  margin: 0px -10px 0px;
+  /* 上 左右 下 */
+  padding: 0 0px;
 }
 
-@media (min-width: 640px) {
+/* @media (min-width: 640px) {
   .vp-features {
-    padding: 0 48px;
+    padding: 0 0px;
   }
 }
 
 @media (min-width: 960px) {
   .vp-features {
-    padding: 0 64px;
+    padding: 0 0px;
   }
-}
+} */
 
 .container {
   margin: 0 auto;
@@ -50,9 +52,9 @@ import { data as posts } from '../posts.data.mjs'
 .items {
   display: flex;
   flex-wrap: wrap;
-  margin: -75px -75px 0;
+  /* margin: -75px -75px 0; */
   position: relative;
-  top: 75px;
+  /* top: 75px; */
 }
 
 .item {
