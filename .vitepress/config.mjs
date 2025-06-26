@@ -72,8 +72,6 @@ function getPosts() {
     ignore: ['**/template.md'],
   });
 
-  console.log(`[Debug] Found ${files.length} post files.`);
-
   const posts = files.map(file => {
     const filePath = path.join(contentDir, file);
     const fileContent = fs.readFileSync(filePath, 'utf-8');
@@ -82,16 +80,9 @@ function getPosts() {
       frontmatter: data,
       url: `/content/${file.replace(/\.md$/, '.html')}`
     };
-  }).filter(post => {
-    const hasDate = !!post.frontmatter.date;
-    if (!hasDate) {
-      console.warn(`[Debug] Post excluded (no date): ${post.url}`);
-    }
-    return hasDate;
-  });
+  }).filter(post => !!post.frontmatter.date);
 
   posts.sort((a, b) => new Date(b.frontmatter.date) - new Date(a.frontmatter.date));
-  console.log(`[Debug] ${posts.length} posts with dates sorted.`);
   return posts;
 }
 
@@ -113,7 +104,7 @@ export default defineConfig({
       { icon: 'github', link: 'https://github.com/CeciliaGuo331' }
     ],
     footer: {
-      message: 'aq\'s days & nights',
+      message: "aq's days & nights",
       copyright: 'Copyright © 2025 <a href="https://github.com/CeciliaGuo331">CeciliaGuo</a>'
     }
   },
@@ -125,24 +116,13 @@ export default defineConfig({
     },
   },
   transformPageData(pageData) {
-    console.log(`[Debug] Processing page: ${pageData.relativePath}`);
     if (pageData.relativePath === 'index.md') {
-      try {
-        const posts = getPosts();
-        if (posts.length > 0) {
-          const latestPost = posts[0];
-          console.log(`[Debug] Found latest post: ${latestPost.frontmatter.title} (${latestPost.url})`);
-          if (pageData.frontmatter.hero && pageData.frontmatter.hero.actions) {
-            pageData.frontmatter.hero.actions[0].link = latestPost.url;
-            console.log(`[Debug] Successfully injected link into hero button.`);
-          } else {
-            console.warn('[Debug] Hero actions not found in index.md frontmatter.');
-          }
-        } else {
-          console.warn('[Debug] No posts with dates found.');
+      const posts = getPosts();
+      if (posts.length > 0) {
+        const latestPost = posts[0];
+        if (pageData.frontmatter.hero && pageData.frontmatter.hero.actions) {
+          pageData.frontmatter.hero.actions[0].link = latestPost.url;
         }
-      } catch (e) {
-        console.error(`[Debug] Error during transformPageData: ${e.message}`);
       }
     }
   }
