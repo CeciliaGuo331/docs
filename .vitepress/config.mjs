@@ -125,5 +125,17 @@ export default defineConfig({
         }
       }
     }
+  },
+
+  async buildEnd(siteConfig) {
+    console.log('Build finished. Generating posts.json...');
+    
+    const posts = getPosts();
+    
+    const outputPath = path.join(siteConfig.outDir, 'posts.json');
+    
+    fs.writeFileSync(outputPath, JSON.stringify(posts, null, 2));
+    
+    console.log(`Successfully generated posts.json at ${outputPath}`);
   }
 })
