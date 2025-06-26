@@ -14,7 +14,7 @@ hero:
       target: '_self'
     - theme: alt
       text: back to my blog
-      link: 'https://ceciliaguo331.github.io/aboutme.html'
+      link: 'https://ceciliaguo331.github.io'
       target: '_self'
 
 ---

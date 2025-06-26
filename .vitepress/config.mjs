@@ -5,7 +5,7 @@ import grayMatter from 'gray-matter'
 import path from 'path'
 import fs from 'fs'
 
-function getSidebar() {
+export function getSidebar() {
   const contentDir = path.resolve(process.cwd(), 'content');
   const files = globbySync('**/*.md', {
     cwd: contentDir,
@@ -23,7 +23,6 @@ function getSidebar() {
 
     let currentLevel = sidebar;
 
-    // Handle root-level files by creating a 'main' category
     if (pathSegments.length === 0) {
       pathSegments.push('main');
     }
@@ -47,18 +46,14 @@ function getSidebar() {
     });
   });
 
-  // Recursive sort function
   function sortItems(items) {
     items.sort((a, b) => {
-      // Directories first
       const aIsGroup = !!a.items;
       const bIsGroup = !!b.items;
       if (aIsGroup && !bIsGroup) return -1;
       if (!aIsGroup && bIsGroup) return 1;
-      // Then by text
       return a.text.localeCompare(b.text);
     });
-    // Sort sub-items recursively
     items.forEach(item => {
       if (item.items) {
         sortItems(item.items);
@@ -70,14 +65,42 @@ function getSidebar() {
   return sidebar;
 }
 
-// https://vitepress.dev/reference/site-config
+function getPosts() {
+  const contentDir = path.resolve(process.cwd(), 'content');
+  const files = globbySync('**/*.md', {
+    cwd: contentDir,
+    ignore: ['**/template.md'],
+  });
+
+  console.log(`[Debug] Found ${files.length} post files.`);
+
+  const posts = files.map(file => {
+    const filePath = path.join(contentDir, file);
+    const fileContent = fs.readFileSync(filePath, 'utf-8');
+    const { data } = grayMatter(fileContent);
+    return {
+      frontmatter: data,
+      url: `/content/${file.replace(/\.md$/, '.html')}`
+    };
+  }).filter(post => {
+    const hasDate = !!post.frontmatter.date;
+    if (!hasDate) {
+      console.warn(`[Debug] Post excluded (no date): ${post.url}`);
+    }
+    return hasDate;
+  });
+
+  posts.sort((a, b) => new Date(b.frontmatter.date) - new Date(a.frontmatter.date));
+  console.log(`[Debug] ${posts.length} posts with dates sorted.`);
+  return posts;
+}
+
 export default defineConfig({
   title: "sparkles",
   description: "record my life",
   base: '/docs/',
   srcExclude: ['README.md', 'TODO.md'],
   themeConfig: {
-    // https://vitepress.dev/reference/default-theme-config
     appearance: 'light',
     nav: [
       { text: 'Home', link: 'https://ceciliaguo331.github.io/', target: '_self' },
@@ -85,13 +108,10 @@ export default defineConfig({
       { text: 'Aboutme', link: 'https://ceciliaguo331.github.io/aboutme.html', target: '_self' },
       { text: 'Friends', link: 'https://ceciliaguo331.github.io/friends.html', target: '_self' },
     ],
-
     sidebar: getSidebar(),
-
     socialLinks: [
       { icon: 'github', link: 'https://github.com/CeciliaGuo331' }
     ],
-
     footer: {
       message: 'aq\'s days & nights',
       copyright: 'Copyright © 2025 <a href="https://github.com/CeciliaGuo331">CeciliaGuo</a>'
@@ -103,5 +123,27 @@ export default defineConfig({
     image: {
       lazyLoading: true
     },
+  },
+  transformPageData(pageData) {
+    console.log(`[Debug] Processing page: ${pageData.relativePath}`);
+    if (pageData.relativePath === 'index.md') {
+      try {
+        const posts = getPosts();
+        if (posts.length > 0) {
+          const latestPost = posts[0];
+          console.log(`[Debug] Found latest post: ${latestPost.frontmatter.title} (${latestPost.url})`);
+          if (pageData.frontmatter.hero && pageData.frontmatter.hero.actions) {
+            pageData.frontmatter.hero.actions[0].link = latestPost.url;
+            console.log(`[Debug] Successfully injected link into hero button.`);
+          } else {
+            console.warn('[Debug] Hero actions not found in index.md frontmatter.');
+          }
+        } else {
+          console.warn('[Debug] No posts with dates found.');
+        }
+      } catch (e) {
+        console.error(`[Debug] Error during transformPageData: ${e.message}`);
+      }
+    }
   }
 })
