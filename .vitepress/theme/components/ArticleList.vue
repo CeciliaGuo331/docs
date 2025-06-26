@@ -45,7 +45,7 @@ import { data as posts } from '../posts.data.mjs'
 } */
 
 .container {
-  margin: 0 auto;
+  margin: 0;
   max-width: 1152px;
 }
 
