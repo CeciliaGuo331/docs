@@ -114,6 +114,11 @@ export default defineConfig({
     image: {
       lazyLoading: true
     },
+    links: {
+      externalAttrs: {
+        target: '_self'
+      }
+    }
   },
   transformPageData(pageData) {
     if (pageData.relativePath === 'index.md') {
