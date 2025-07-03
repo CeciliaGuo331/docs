@@ -1,0 +1,179 @@
+{
+  "main": {
+    "id": "a8826c2604af2aee",
+    "type": "split",
+    "children": [
+      {
+        "id": "cfca532d63c9112d",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "9233c8be114c1bd7",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "content/note/大模型：从基础到实战/深度学习原理与PyTorch实战.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "深度学习原理与PyTorch实战"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "35f015b27a336312",
+    "type": "split",
+    "children": [
+      {
+        "id": "c8f3a06c8b28cbb1",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "66797250f1c01581",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "文件列表"
+            }
+          },
+          {
+            "id": "0ab2ae7d894dea86",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "搜索"
+            }
+          },
+          {
+            "id": "72f2b0522ef764bf",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "书签"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "1590d8e007d607bf",
+    "type": "split",
+    "children": [
+      {
+        "id": "ceed9100838d21a1",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "75c43d3dd4d1626d",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "content/note/大模型：从基础到实战/深度学习原理与PyTorch实战.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "深度学习原理与PyTorch实战 的反向链接列表"
+            }
+          },
+          {
+            "id": "2142744847bc7e1f",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "content/note/大模型：从基础到实战/深度学习原理与PyTorch实战.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "深度学习原理与PyTorch实战 的出链列表"
+            }
+          },
+          {
+            "id": "b8ad65bddae97c1e",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "标签"
+            }
+          },
+          {
+            "id": "5bb9f973e45223cb",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "content/note/大模型：从基础到实战/深度学习原理与PyTorch实战.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "深度学习原理与PyTorch实战 的大纲"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:打开快速切换": false,
+      "graph:查看关系图谱": false,
+      "canvas:新建白板": false,
+      "daily-notes:打开/创建今天的日记": false,
+      "templates:插入模板": false,
+      "command-palette:打开命令面板": false
+    }
+  },
+  "active": "9233c8be114c1bd7",
+  "lastOpenFiles": [
+    "content/note/大模型：从基础到实战/1_从人工智能到大模型.md",
+    "2025-06-30.md",
+    "README.md",
+    "TODO.md",
+    "CLAUDE.md"
+  ]
+}
