@@ -6,3 +6,6 @@ node_modules
 *.env
 claude.sh
 CLAUDE.md
+.obsidian
+.obsidian/appearance.json
+.obsidian/workspace.json
