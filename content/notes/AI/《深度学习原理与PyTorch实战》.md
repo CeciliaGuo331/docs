@@ -1,7 +1,7 @@
 ---
 title: 《深度学习原理与PyTorch实战》
 date: 2025-06-28
-details: 预习
+details: 
 ---
 
 # 《深度学习原理与PyTorch实战》
