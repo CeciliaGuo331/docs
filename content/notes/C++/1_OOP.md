@@ -4,7 +4,7 @@ date: 2025-08-14
 details: 面向对象编程：封装 继承 多态
 ---
 
-# 1_OOP
+# OOP
 
 ## 封装 (Encapsulation)
 
