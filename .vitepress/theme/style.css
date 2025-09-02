@@ -128,6 +128,61 @@
   display: block;
 }
 
+/* 侧边栏层级动态最大宽度，保证右侧边界一致 */
+#VPSidebarNav .group {
+  /* 侧边栏总宽度，按实际侧边栏宽度设置 */
+  --sidebar-width: 260px;
+  --item-indent: 18px;
+}
+#VPSidebarNav .group .VPSidebarItem {
+  /* 计算最大宽度：总宽度减去左侧缩进 */
+  --item-level: 0;
+  --item-max-width: calc(var(--sidebar-width) - (var(--item-level) * var(--item-indent)) - 32px);
+}
+#VPSidebarNav .group .items .VPSidebarItem {
+  --item-level: 1;
+  --item-max-width: calc(var(--sidebar-width) - (var(--item-level) * var(--item-indent)) - 32px);
+}
+#VPSidebarNav .group .items .items .VPSidebarItem {
+  --item-level: 2;
+  --item-max-width: calc(var(--sidebar-width) - (var(--item-level) * var(--item-indent)) - 32px);
+}
+#VPSidebarNav .group .items .items .items .VPSidebarItem {
+  --item-level: 3;
+  --item-max-width: calc(var(--sidebar-width) - (var(--item-level) * var(--item-indent)) - 32px);
+}
+#VPSidebarNav .group .items .items .items .items .VPSidebarItem {
+  --item-level: 4;
+  --item-max-width: calc(var(--sidebar-width) - (var(--item-level) * var(--item-indent)) - 32px);
+}
+#VPSidebarNav .group .items .items .items .items .items .VPSidebarItem {
+  --item-level: 5;
+  --item-max-width: calc(var(--sidebar-width) - (var(--item-level) * var(--item-indent)) - 32px);
+}
+#VPSidebarNav .group .items .items .items .items .items .items .VPSidebarItem {
+  --item-level: 6;
+  --item-max-width: calc(var(--sidebar-width) - (var(--item-level) * var(--item-indent)) - 32px);
+}
+#VPSidebarNav .group .items .items .items .items .items .items .items .VPSidebarItem {
+  --item-level: 7;
+  --item-max-width: calc(var(--sidebar-width) - (var(--item-level) * var(--item-indent)) - 32px);
+}
+#VPSidebarNav .group .items .items .items .items .items .items .items .items .VPSidebarItem {
+  --item-level: 8;
+  --item-max-width: calc(var(--sidebar-width) - (var(--item-level) * var(--item-indent)) - 32px);
+}
+#VPSidebarNav .group .items .items .items .items .items .items .items .items .items .VPSidebarItem {
+  --item-level: 9;
+  --item-max-width: calc(var(--sidebar-width) - (var(--item-level) * var(--item-indent)) - 32px);
+}
+#VPSidebarNav .group .items .items .items .items .items .items .items .items .items .items .VPSidebarItem {
+  --item-level: 10;
+  --item-max-width: calc(var(--sidebar-width) - (var(--item-level) * var(--item-indent)) - 32px);
+}
+#VPSidebarNav .group .VPSidebarItem .text {
+  max-width: var(--item-max-width, 180px);
+}
+
 /* 隐藏侧边栏项目左侧的指示器（短竖线） */
 .VPSidebarItem .indicator {
   display: none;
